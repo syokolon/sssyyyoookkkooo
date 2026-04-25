@@ -153,24 +153,24 @@ okBtn.addEventListener("click", () => {
   localStorage.setItem(getMonthKey(), JSON.stringify(data));
 
   renderDay(currentDay);
+
+  // モーダル確実に閉じる
   modal.classList.add("hidden");
-   // 👇ここ追加！！
+
+  // スタンプ表示
+  stamp.classList.remove("hidden"); // ←ここ重要
   stamp.classList.add("show");
 
   let toggle = false;
 
   stampInterval = setInterval(() => {
     toggle = !toggle;
-
-    if (toggle) {
-      stampImg.src = "images/stamp1.png";
-    } else {
-      stampImg.src = "images/stamp2.png";
-    }
+    stampImg.src = toggle ? "images/stamp1.png" : "images/stamp2.png";
   }, 200);
 
   setTimeout(() => {
     clearInterval(stampInterval);
+    stamp.classList.add("hidden");  // ←showじゃなくhiddenで戻す
     stamp.classList.remove("show");
   }, 1000);
 });

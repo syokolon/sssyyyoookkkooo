@@ -165,3 +165,10 @@ button:last-child {
 #stamp img {
   width: 120px;
 }
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block; /* or flex */
+}
