@@ -12,6 +12,8 @@
   <button id="prevMonth">←</button>
   <span id="monthLabel"></span>
   <button id="nextMonth">→</button>
+
+ <button id="toggleTotal">合計</button>
 </div>
 
 <h2>しょこの一日</h2>
@@ -27,7 +29,7 @@
 </div>
 
 <div id="calendar"></div>
-
+<div id="monthTotal" class="bottom-bar hidden"></div>
 <!-- モーダル -->
 <div id="modal" class="modal hidden">
   <div class="window">
@@ -75,7 +77,8 @@
     </div>
   </div>
 </div>
-<div id="monthTotal"></div>
+
+ 
 <!-- 👇スタンプはscriptより上！ -->
 <div id="stamp" class="hidden">
   <img id="stampImg" src="images/stamp1.png">

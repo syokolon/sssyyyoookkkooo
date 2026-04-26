@@ -11,12 +11,18 @@ const ajiEl = document.getElementById("aji");
 const okBtn = document.getElementById("okBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 const monthLabel = document.getElementById("monthLabel");
+const totalBtn = document.getElementById("toggleTotal");
+const totalBar = document.getElementById("monthTotal");
 
+totalBtn.addEventListener("click", () => {
+  totalBar.classList.toggle("show");
+});
 let currentDate = new Date();
 let currentDay = null;
 let dayElements = {};
 let stampInterval;
 let selectedType = "";
+const RATE = 1180;
 
 // ----------------------
 // 月キー
@@ -162,9 +168,11 @@ function renderCalendar() {
       modal.classList.remove("hidden");
     });
 
-    calendar.appendChild(div);
+     calendar.appendChild(div);
   }
 
+  updateMonthTotal(); // ⭐これここに入れるのが正解
+  updateMonthLabel();
 }
 
 // ----------------------
@@ -259,20 +267,34 @@ function updateMonthTotal() {
   let nade = 0;
   let aji = 0;
 
-  for (let day in data) {
-    suzu += data[day].suzu;
-    hida += data[day].hida;
-    nade += data[day].nade;
-    aji += data[day].aji;
-  }
+ for (let day in data) {
+  const d = data[day];
+
+  suzu += d.suzu || 0;
+  hida += d.hida || 0;
+  nade += d.nade || 0;
+  aji += d.aji || 0;
+}
+
+  const totalHours = suzu + hida + nade + aji;
+  const totalMoney = totalHours * RATE;
 
   document.getElementById("monthTotal").innerHTML = `
-    <div>すずらん：${suzu}h</div>
-    <div>ひだまり：${hida}h</div>
-    <div>なでしこ：${nade}h</div>
-    <div>あじさい：${aji}h</div>
+    すずらん：${suzu}h（¥${suzu * RATE}） /
+    ひだまり：${hida}h（¥${hida * RATE}） /
+    なでしこ：${nade}h（¥${nade * RATE}） /
+    あじさい：${aji}h（¥${aji * RATE}）
+
+    <hr>
+
+    <div>
+      <b>合計：${totalHours}h（¥${totalMoney}）</b>
+    </div>
   `;
 }
+  document.getElementById("monthTotal").classList.add("show");
+  document.getElementById("monthTotal").classList.remove("hidden");
+
 // ----------------------
 // 月移動
 // ----------------------
@@ -289,5 +311,6 @@ document.getElementById("nextMonth").addEventListener("click", () => {
 // ----------------------
 // 初期表示
 // ----------------------
+
 renderCalendar();
-updateMonthTotal();
+updateMonthLabel();
