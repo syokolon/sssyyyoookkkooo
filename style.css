@@ -58,7 +58,7 @@ body {
   align-items: center;
 }
 
-..hidden {
+.hidden {
   display: none;
 }
 

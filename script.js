@@ -123,10 +123,10 @@ function renderDay(day) {
     <div class="date">${day}</div>
     <div class="total">合計: ${total}h</div>
 
-    <div class="place"><img src="images/suzuran.png"> ${d.suzu}h</div>
-    <div class="place"><img src="images/hidamari.png"> ${d.hida}h</div>
-    <div class="place"><img src="images/nadeshiko.png"> ${d.nade}h</div>
-    <div class="place"><img src="images/ajisai.png"> ${d.aji}h</div>
+    <div class="place">suzu<img src="images/suzuran.png"> ${d.suzu}h</div>
+    <div class="place">hida<img src="images/hidamari.png"> ${d.hida}h</div>
+    <div class="place">nade<img src="images/nadeshiko.png"> ${d.nade}h</div>
+    <div class="place">aji<img src="images/ajisai.png"> ${d.aji}h</div>
   `;
 }
 
