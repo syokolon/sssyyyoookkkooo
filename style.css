@@ -22,7 +22,16 @@ body {
   cursor: pointer;
   transition: 0.15s;
 }
+.faint-date {
+  position: absolute;
+  top: 8px;
+  left: 10px;
 
+  font-size: 18px;
+  font-weight: bold;
+
+  color: rgba(0,0,0,0.15);
+}
 .day:hover {
   background: #f0f0f0;
 }
@@ -171,7 +180,52 @@ button:last-child {
 .hidden {
   display: none;
 }
-
+#monthTotal {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
 .show {
   display: block; /* or flex */
+}
+.type-buttons button.active {
+  background: #ff69b4;
+  color: white;
+  border: 2px solid #ff69b4;
+}
+.day {
+  position: relative;
+  overflow: hidden;
+   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.date {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  font-size: 70px;
+  font-weight: bold;
+  color: rgba(0,0, 0, 0.2); /* ←ここが透明ポイント */
+  pointer-events: none;
+}
+.rest-big {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 32px;
+  font-weight: bold;
+
+  color: red;
+  opacity: 0.7;
+
+  pointer-events: none;
 }
