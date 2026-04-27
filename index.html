@@ -13,7 +13,7 @@
   <span id="monthLabel"></span>
   <button id="nextMonth">→</button>
 
- <button id="toggleTotal">合計</button>
+ <button id="toggleTotal">閉じる</button>
 </div>
 
 <h2>しょこの一日</h2>
@@ -63,18 +63,23 @@
         <span id="aji">0</span>
         <button onclick="change('aji', 1)">+</button>
       </div>
+       <button onclick="toggleType('ランチ')" id="btn-lunch">🍚 ランチ</button>
     </div>
 
       <div class="type-buttons">
   <button onclick="toggleType('病院')" id="btn-hospital">🏥 病院</button>
   <button onclick="toggleType('休み')" id="btn-holiday">🌙 休み</button>
+  
+  <div class="buttons">
+      <button id="okBtn">OK</button>
+      <button id="cancelBtn">キャンセル</button>  
+  </div>
+　
+ 
 </div>
 
 
-    <div class="buttons">
-      <button id="okBtn">OK</button>
-      <button id="cancelBtn">キャンセル</button>
-    </div>
+    
   </div>
 </div>
 

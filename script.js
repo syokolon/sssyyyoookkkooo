@@ -259,6 +259,9 @@ function updateTypeUI() {
   if (selectedType === "休み") {
     holidayBtn.classList.add("active");
   }
+   if (selectedType === "ランチ") {
+    holidayBtn.classList.add("active");
+  }
 }
 
 function updateMonthTotal() {
