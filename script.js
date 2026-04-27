@@ -14,6 +14,19 @@ const monthLabel = document.getElementById("monthLabel");
 const totalBtn = document.getElementById("toggleTotal");
 const totalBar = document.getElementById("monthTotal");
 
+const clearBtn = document.getElementById("clearBtn");
+
+clearBtn.addEventListener("click", () => {
+  suzuEl.innerText = 0;
+  hidaEl.innerText = 0;
+  nadeEl.innerText = 0;
+  ajiEl.innerText = 0;
+
+  selectedType = "";
+  isLunchSelected = false;
+  updateTypeUI();
+
+});
 totalBtn.addEventListener("click", () => {
   totalBar.classList.toggle("show");
 });
@@ -22,8 +35,9 @@ let currentDay = null;
 let dayElements = {};
 let stampInterval;
 let selectedType = "";
+let isLunchSelected = false;
 const RATE = 1180;
-
+let lunchCount = 0;
 // ----------------------
 // 月キー
 // ----------------------
@@ -62,16 +76,16 @@ function renderDay(day) {
   div.style.background = "";
   div.style.borderRadius = "";
 
-  // 🏥 病院
-  if (d.type === "病院") {
-    div.style.background = "#ffd6d6";
+  // 🌙 休み（最優先）
+  if (d.type === "休み") {
+    div.style.background = "#f0f0f0";
     div.style.borderRadius = "10px";
 
     div.innerHTML = `
-      <div class="date">${day}</div>
-      <div class="type-big hospital">🏥 病院</div>
+      <div class="date faint-date">${day}</div>
+      <div class="rest-big">休み</div>
     `;
-    return; // ←ここ超重要（これで止める）
+    return;
   }
 
   // 🌙 休み
@@ -83,12 +97,28 @@ function renderDay(day) {
       <div class="date faint-date">${day}</div>
       <div class="rest-big">休み</div>
     `;
-    return; // ←これも必須
+    return;
   }
+
+  // ✅ アイコンまとめる
+  let iconHTML = "";
+
+  if (d.type === "病院") {
+    iconHTML += `<div class="hospital-icon">🏥</div>`;
+    div.style.background = "#ffd6d6";
+    div.style.borderRadius = "10px";
+  }
+
+  if (d.lunch) {
+    iconHTML += `<div class="lunch-icon">🍚</div>`;
+  }
+
 
   // 通常表示
   div.innerHTML = `
     <div class="date">${day}</div>
+    ${iconHTML}
+
     <div class="total">合計: ${total}h</div>
 
     <div class="place">
@@ -148,7 +178,8 @@ function renderCalendar() {
         hida: 0,
         nade: 0,
         aji: 0,
-        type: ""
+        type: "",
+        lunch: false
       };
     }
 
@@ -167,6 +198,48 @@ function renderCalendar() {
 
       modal.classList.remove("hidden");
     });
+    let pressTimer;
+function clearDay(day) {
+  if (!confirm("この日のデータを削除する？")) return;
+
+  data[day] = {
+    suzu: 0,
+    hida: 0,
+    nade: 0,
+    aji: 0,
+    type: "",
+    lunch: false
+  };
+
+  localStorage.setItem(getMonthKey(), JSON.stringify(data));
+  renderCalendar();
+}
+// 押したとき
+div.addEventListener("mousedown", () => {
+  pressTimer = setTimeout(() => {
+    clearDay(day);
+  }, 800); // 0.8秒長押し
+});
+
+// 離したらキャンセル
+div.addEventListener("mouseup", () => {
+  clearTimeout(pressTimer);
+});
+
+div.addEventListener("mouseleave", () => {
+  clearTimeout(pressTimer);
+});
+
+// スマホ対応
+div.addEventListener("touchstart", () => {
+  pressTimer = setTimeout(() => {
+    clearDay(day);
+  }, 800);
+});
+
+div.addEventListener("touchend", () => {
+  clearTimeout(pressTimer);
+});
 
      calendar.appendChild(div);
   }
@@ -179,12 +252,20 @@ function renderCalendar() {
 // OK保存
 // ----------------------
 okBtn.addEventListener("click", () => {
+
+  let lunch = isLunchSelected;
+
+  if (selectedType === "休み") {
+    lunch = false;
+  }
+
   data[currentDay] = {
     suzu: Number(suzuEl.innerText),
     hida: Number(hidaEl.innerText),
     nade: Number(nadeEl.innerText),
     aji: Number(ajiEl.innerText),
-    type: selectedType
+    type: selectedType,
+    lunch: lunch
   };
 
   localStorage.setItem(getMonthKey(), JSON.stringify(data));
@@ -210,7 +291,10 @@ okBtn.addEventListener("click", () => {
     stamp.classList.remove("show");
   }, 1000);
 });
-
+function toggleLunch() {
+  isLunchSelected = !isLunchSelected;
+  updateTypeUI();
+}
 // ----------------------
 // キャンセル
 // ----------------------
@@ -248,20 +332,19 @@ function toggleType(type) {
 function updateTypeUI() {
   const hospitalBtn = document.getElementById("btn-hospital");
   const holidayBtn = document.getElementById("btn-holiday");
-
+ const lunchBtn = document.getElementById("btn-lunch");
   hospitalBtn.classList.remove("active");
   holidayBtn.classList.remove("active");
-
+ lunchBtn.classList.remove("active");
   if (selectedType === "病院") {
     hospitalBtn.classList.add("active");
   }
-
   if (selectedType === "休み") {
     holidayBtn.classList.add("active");
   }
-   if (selectedType === "ランチ") {
-    holidayBtn.classList.add("active");
-  }
+ if (isLunchSelected) {
+  lunchBtn.classList.add("active");
+}
 }
 
 function updateMonthTotal() {
@@ -277,8 +360,11 @@ function updateMonthTotal() {
   hida += d.hida || 0;
   nade += d.nade || 0;
   aji += d.aji || 0;
+    if (d.lunch) {
+    lunchCount++;
+　}
 }
-
+　const lunchMoney = lunchCount * 250;
   const totalHours = suzu + hida + nade + aji;
   const totalMoney = totalHours * RATE;
 
@@ -286,9 +372,10 @@ function updateMonthTotal() {
     すずらん：${suzu}h（¥${suzu * RATE}） /
     ひだまり：${hida}h（¥${hida * RATE}） /
     なでしこ：${nade}h（¥${nade * RATE}） /
-    あじさい：${aji}h（¥${aji * RATE}）
-
+    あじさい：${aji}h（¥${aji * RATE}）/
+🍚ランチ：${lunchCount}回（¥${lunchMoney}）
     <hr>
+
 
     <div>
       <b>合計：${totalHours}h（¥${totalMoney}）</b>
