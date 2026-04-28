@@ -4,7 +4,7 @@ html, body {
   height: 100%;
 }
 body {
-  display: block;
+  display: flex;
   flex-direction: column;
   font-size: 16px;
   line-height: 1.6;
@@ -12,12 +12,13 @@ body {
 }
 .container {
   width: 100%;
-  max-width: none;
+  max-width: 500px;
   margin: 0 auto;
   padding: 12px;
 }
 
 #calendar {
+  flex: 1; /* ←これが超重要 */
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
@@ -67,29 +68,20 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: rgba(0,0,0,0.3);
-  display:none;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-.modal-content {
-  width: 90%;
-  max-width: 400;   /* ←小さいならここを500とかにする */
-  padding: 20px;
-  background: white;
-  border-radius: 20px;
-}
-.modal.show {
-  display: flex;
-}
+
 .hidden {
   display: none;
 }
 
 #stamp.show {
-  display: flex;
+  display: block;
 }
 
 .window {
@@ -173,7 +165,7 @@ button:last-child {
   }
 
 .day:active {
-
+  transform: scale(0.95);
   box-shadow: inset 0 0 5px #999;
 }
 #stamp {
@@ -199,11 +191,13 @@ button:last-child {
 }
 
 
+/* 拠点カラー */
+.suzu { color: #ff6fae; font-weight: bold; }
+.hida { color: #4dd0e1; font-weight: bold; }
+.nade { color: #81c784; font-weight: bold; }
+.aji  { color: #ba68c8; font-weight: bold; }
 .show {
-  display:block; /* or flex */
-}
-.modal.show {
-  display: flex;
+  display: block; /* or flex */
 }
 .total-box {
   margin-top: 8px;
