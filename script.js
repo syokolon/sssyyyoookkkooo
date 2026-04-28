@@ -196,7 +196,7 @@ function renderCalendar() {
       nadeEl.innerText = d.nade;
       ajiEl.innerText = d.aji;
 
-      modal.classList.remove("show");
+      modal.classList.add("show");
     });
     let pressTimer;
 function clearDay(day) {
@@ -272,7 +272,7 @@ okBtn.addEventListener("click", () => {
 
   renderCalendar();
 
-
+modal.classList.remove("show");
  
   stamp.classList.add("show");
 
@@ -299,7 +299,7 @@ function toggleLunch() {
 // キャンセル
 // ----------------------
 cancelBtn.addEventListener("click", () => {
-  modal.classList.add("show");
+  modal.classList.remove("show");
 });
 
 // ----------------------
