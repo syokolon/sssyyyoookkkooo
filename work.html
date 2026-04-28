@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>しょこの一日</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/icon.png">
+<link rel="apple-touch-icon" href="images/icon.png">
+</head>
+<body>
+
+<!-- 👇ここに移動 -->
+<div class="month-nav">
+  <button id="prevMonth">←</button>
+  <span id="monthLabel"></span>
+  <button id="nextMonth">→</button>
+
+ <button id="toggleTotal">閉じる</button>
+</div>
+
+<div class="weekdays">
+  <div>日</div>
+  <div>月</div>
+  <div>火</div>
+  <div>水</div>
+  <div>木</div>
+  <div>金</div>
+  <div>土</div>
+</div>
+
+<div id="calendar"></div>
+<div id="monthTotal" class="bottom-bar hidden"></div>
+<!-- モーダル -->
+  <div id="modal" class="modal">
+  <div class="modal-content">
+    <div class="window">
+    <div class="title-bar">勤務入力</div>
+
+    <div class="content">
+      <div class="row">
+        <span>すずらん</span>
+        <button onclick="change('suzu', -1)">-</button>
+        <span id="suzu">0</span>
+        <button onclick="change('suzu', 1)">+</button>
+      </div>
+
+      <div class="row">
+        <span>ひだまり</span>
+        <button onclick="change('hida', -1)">-</button>
+        <span id="hida">0</span>
+        <button onclick="change('hida', 1)">+</button>
+      </div>
+
+      <div class="row">
+        <span>なでしこ</span>
+        <button onclick="change('nade', -1)">-</button>
+        <span id="nade">0</span>
+        <button onclick="change('nade', 1)">+</button>
+      </div>
+
+      <div class="row">
+        <span>あじさい</span>
+        <button onclick="change('aji', -1)">-</button>
+        <span id="aji">0</span>
+        <button onclick="change('aji', 1)">+</button>
+      </div>
+  
+   <div class="type-buttons">
+  <button id="btn-lunch" onclick="toggleLunch()">🍚 ランチ</button>
+  <button onclick="toggleType('病院')" id="btn-hospital">🏥 病院</button>
+  <button onclick="toggleType('休み')" id="btn-holiday">🌙 休み</button>
+</div>
+ </div>
+<div class="buttons">
+  <button id="okBtn">OK</button>
+   <button id="clearBtn">クリア</button>
+  <button id="cancelBtn">キャンセル</button>  
+</div>
+
+</div>
+
+
+    
+  </div>
+</div>
+
+ 
+<!-- 👇スタンプはscriptより上！ -->
+<div id="stamp" class="hidden">
+  <img id="stampImg" src="images/stamp1.png">
+</div>
+
+<!-- 👇一番最後にJS -->
+
+<script src="script.js"></script>
+</body>
+
+</html>
