@@ -82,8 +82,8 @@ body {
   justify-content: center;
 }
 .modal-content {
-  width: 90%;
-  max-width: 400px;
+  width: 95%;
+  max-width: 500px;
 }
 .hidden {
   display: none;
