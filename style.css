@@ -77,7 +77,7 @@ body {
 }
 .modal-content {
   width: 90%;
-  max-width: 80%;   /* ←小さいならここを500とかにする */
+  max-width: 500px;   /* ←小さいならここを500とかにする */
   padding: 20px;
   background: white;
   border-radius: 20px;
