@@ -196,7 +196,7 @@ function renderCalendar() {
       nadeEl.innerText = d.nade;
       ajiEl.innerText = d.aji;
 
-      modal.classList.remove("hidden");
+      modal.classList.remove("show");
     });
     let pressTimer;
 function clearDay(day) {
@@ -271,9 +271,9 @@ okBtn.addEventListener("click", () => {
   localStorage.setItem(getMonthKey(), JSON.stringify(data));
 
   renderCalendar();
-  modal.classList.add("hidden");
 
-  stamp.classList.remove("hidden");
+
+ 
   stamp.classList.add("show");
 
   let toggle = false;
@@ -299,7 +299,7 @@ function toggleLunch() {
 // キャンセル
 // ----------------------
 cancelBtn.addEventListener("click", () => {
-  modal.classList.add("hidden");
+  modal.classList.add("show");
 });
 
 // ----------------------
@@ -362,9 +362,9 @@ function updateMonthTotal() {
   aji += d.aji || 0;
     if (d.lunch) {
     lunchCount++;
-　}
+ }
 }
-　const lunchMoney = lunchCount * 250;
+  const lunchMoney = lunchCount * 250;
   const totalHours = suzu + hida + nade + aji;
   const totalMoney = totalHours * RATE;
 
