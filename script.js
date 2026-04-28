@@ -372,13 +372,14 @@ function updateMonthTotal() {
     すずらん：${suzu}h（¥${suzu * RATE}） /
     ひだまり：${hida}h（¥${hida * RATE}） /
     なでしこ：${nade}h（¥${nade * RATE}） /
-    あじさい：${aji}h（¥${aji * RATE}）
-
+    あじさい：${aji}h（¥${aji * RATE}）/
+🍚ランチ：${lunchCount}回（¥${lunchMoney}）
     <hr>
 
 
     <div>
-      <b>合計：${totalHours}h（¥${totalMoney}）/🍚ランチ：${lunchCount}回（¥${lunchMoney}）</div></div>
+      <b>合計：${totalHours}h（¥${totalMoney}）</b>
+    </div>
   `;
 }
   document.getElementById("monthTotal").classList.add("show");
