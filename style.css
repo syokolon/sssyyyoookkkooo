@@ -71,7 +71,7 @@ body {
   width: 100vw;
   height: 100vh;
   background: rgba(0,0,0,0.3);
-  display: flex;
+  display:flex;
   justify-content: center;
   align-items: center;
 }
@@ -88,7 +88,7 @@ body {
 }
 
 #stamp.show {
-  display: block;
+  display: flex;
 }
 
 .window {
@@ -198,11 +198,6 @@ button:last-child {
 }
 
 
-/* 拠点カラー */
-.suzu { color: #ff6fae; font-weight: bold; }
-.hida { color: #4dd0e1; font-weight: bold; }
-.nade { color: #81c784; font-weight: bold; }
-.aji  { color: #ba68c8; font-weight: bold; }
 .show {
   display: flex; /* or flex */
 }
