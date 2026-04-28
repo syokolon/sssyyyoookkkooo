@@ -82,7 +82,9 @@ body {
   background: white;
   border-radius: 20px;
 }
-
+.modal.show {
+  display: flex;
+}
 .hidden {
   display: none;
 }
@@ -199,7 +201,7 @@ button:last-child {
 
 
 .show {
-  display: flex; /* or flex */
+  display:block; /* or flex */
 }
 .total-box {
   margin-top: 8px;
