@@ -123,22 +123,22 @@ function renderDay(day) {
 
     <div class="place">
       <img src="images/suzuran.png">
-      suzu ${d.suzu}h
+      す ${d.suzu}h
     </div>
 
     <div class="place">
       <img src="images/hidamari.png">
-      hida ${d.hida}h
+      ひだ ${d.hida}h
     </div>
 
     <div class="place">
       <img src="images/nadeshiko.png">
-      nade ${d.nade}h
+      なで ${d.nade}h
     </div>
 
     <div class="place">
       <img src="images/ajisai.png">
-      aji ${d.aji}h
+      あじ ${d.aji}h
     </div>
   `;
 }
