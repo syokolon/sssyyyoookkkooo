@@ -201,7 +201,7 @@ button:last-child {
 
 
 .show {
-  display:block; /* or flex */
+  display:flex; /* or flex */
 }
 .total-box {
   margin-top: 8px;
