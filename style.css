@@ -79,6 +79,14 @@ body {
   align-items: center;
    z-index: 1000;
 }
+@media (max-width: 600px) {
+  .window {
+    font-size: 20px;
+  }
+  .title-bar {
+    font-size: 24px;
+  }
+}
 .modal.show {
   display: flex;
   align-items: center;
@@ -101,6 +109,9 @@ body {
   border-radius: 12px;
   width: 100%;
   padding: 15px;
+
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .title-bar {
