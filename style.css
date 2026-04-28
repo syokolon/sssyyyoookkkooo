@@ -66,10 +66,10 @@ body {
 /* モーダル */
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 90vw;
-  height: 50vh;
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 80vh;
   padding: 20px;
   border-radius: 12px;
   background: rgba(0,0,0,0.3);
