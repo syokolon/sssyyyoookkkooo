@@ -71,13 +71,13 @@ body {
   width: 100vw;
   height: 100vh;
   background: rgba(0,0,0,0.3);
-  display:flex;
+  display:none;
   justify-content: center;
   align-items: center;
 }
 .modal-content {
   width: 90%;
-  max-width: none;   /* ←小さいならここを500とかにする */
+  max-width: 400;   /* ←小さいならここを500とかにする */
   padding: 20px;
   background: white;
   border-radius: 20px;
@@ -202,6 +202,9 @@ button:last-child {
 
 .show {
   display:block; /* or flex */
+}
+.modal.show {
+  display: flex;
 }
 .total-box {
   margin-top: 8px;
