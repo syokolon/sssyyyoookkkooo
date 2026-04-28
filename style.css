@@ -12,7 +12,7 @@ body {
 }
 .container {
   width: 100%;
-  max-width: 500px;
+  max-width: none;
   margin: 0 auto;
   padding: 12px;
 }
@@ -204,7 +204,7 @@ button:last-child {
 .nade { color: #81c784; font-weight: bold; }
 .aji  { color: #ba68c8; font-weight: bold; }
 .show {
-  display: block; /* or flex */
+  display: flex; /* or flex */
 }
 .total-box {
   margin-top: 8px;
