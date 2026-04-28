@@ -1,7 +1,27 @@
 #splash {
-  height: 100vh;
+  position: fixed;
+  inset: 0;
+  background: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #ffcc80;
+}
+
+.logo {
+  position: absolute;
+  width: 180px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.logo.active {
+  opacity: 1;
+}
+
+.version {
+  position: absolute;
+  bottom: 40px;
+  font-size: 14px;
+  color: #888;
 }

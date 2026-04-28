@@ -15,7 +15,26 @@ const totalBtn = document.getElementById("toggleTotal");
 const totalBar = document.getElementById("monthTotal");
 
 const clearBtn = document.getElementById("clearBtn");
+const logo1 = document.getElementById("logo1");
+const logo2 = document.getElementById("logo2");
 
+let toggle = true;
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("splash").style.display = "none";
+    document.getElementById("app").style.display = "block";
+  }, 2000); // 2秒表示
+});
+setInterval(() => {
+  if (toggle) {
+    logo1.classList.remove("active");
+    logo2.classList.add("active");
+  } else {
+    logo2.classList.remove("active");
+    logo1.classList.add("active");
+  }
+  toggle = !toggle;
+}, 800); // 切り替え速度
 clearBtn.addEventListener("click", () => {
   suzuEl.innerText = 0;
   hidaEl.innerText = 0;
