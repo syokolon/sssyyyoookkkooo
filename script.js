@@ -190,17 +190,17 @@ function renderCalendar() {
 
     renderDay(day);
 
-    div.addEventListener("click", () => {
-      currentDay = day;
+   div.addEventListener("click", () => {
+  currentDay = day;
 
-      const d = data[day];
-      suzuEl.innerText = d.suzu;
-      hidaEl.innerText = d.hida;
-      nadeEl.innerText = d.nade;
-      ajiEl.innerText = d.aji;
+  const d = data[day];
+  suzuEl.innerText = d.suzu;
+  hidaEl.innerText = d.hida;
+  nadeEl.innerText = d.nade;
+  ajiEl.innerText = d.aji;
 
-      modal.classList.add("show");
-    });
+  modal.classList.add("show");
+});
     let pressTimer;
 function clearDay(day) {
   if (!confirm("この日のデータを削除する？")) return;
@@ -217,32 +217,12 @@ function clearDay(day) {
   localStorage.setItem(getMonthKey(), JSON.stringify(data));
   renderCalendar();
 }
-// 押したとき
-div.addEventListener("mousedown", () => {
-  pressTimer = setTimeout(() => {
-    clearDay(day);
-  }, 800); // 0.8秒長押し
-});
 
-// 離したらキャンセル
-div.addEventListener("mouseup", () => {
-  clearTimeout(pressTimer);
-});
-
-div.addEventListener("mouseleave", () => {
-  clearTimeout(pressTimer);
-});
 
 // スマホ対応
-div.addEventListener("touchstart", () => {
-  pressTimer = setTimeout(() => {
-    clearDay(day);
-  }, 800);
-});
 
-div.addEventListener("touchend", () => {
-  clearTimeout(pressTimer);
-});
+
+
 
      calendar.appendChild(div);
   }
