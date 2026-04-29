@@ -4,31 +4,66 @@ html, body {
   height: 100%;
 }
 body {
+    margin: 0;
+  height: 100vh;
+  background: white;
   display: flex;
-  flex-direction: column;
-  font-size: 16px;
-  line-height: 1.6;
-  height: 100%;
+  justify-content: center;
+  align-items: center;
   font-family: sans-serif;
+  transition: opacity 0.5s ease;
+}
+body.fadeout {
+  opacity: 0;
+}
+#splash {
+  text-align: center;
+  position: relative;
+}
+.logo {
+  width: 180px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.logo.active {
+  opacity: 1;
+}
+* {
+  box-sizing: border-box;
+}
+.version {
+  margin-top: 220px;
+  font-size: 12px;
+  color: #999;
 }
 .container {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 12px;
 }
 
 #calendar {
-  flex: 1; /* ←これが超重要 */
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+    width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }
 .day {
   background: white;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 10px;
   padding: 8px;
-  min-height: 100px;
+  min-height: 80px;
   cursor: pointer;
   transition: 0.15s;
 }
@@ -174,6 +209,7 @@ button:last-child {
   margin-bottom: 5px;
   text-align: center;
   font-weight: bold;
+  width: 100%;
 }
 
 .weekdays div:nth-child(1) {
@@ -245,7 +281,10 @@ button:last-child {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
+  faint-date{posolute;
+  }
+  rest-big{position: absolute;
+  }
   font-size: 70px;
   font-weight: bold;
   color: rgba(0,0, 0, 0.2); /* ←ここが透明ポイント */

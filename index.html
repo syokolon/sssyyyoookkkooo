@@ -2,32 +2,35 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>しょこの一日</title>
+  <title>スプラッシュ</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="images/icon.png">
-  <link rel="apple-touch-icon" href="images/icon.png">
 </head>
-
 <body>
 
-<!-- スプラッシュ -->
 <div id="splash">
-  <img id="logo1" src="logo1.png" class="logo active">
-  <img id="logo2" src="logo2.png" class="logo">
+
+<img src="images/logo1.png">
+  <img src="images/logo2.png">
 
   <div class="version">ver 1.0.0</div>
-</div>
-
-<!-- メイン画面（ここに今のアプリ本体入る） -->
-<div id="app" style="display:none;">
-  
-  <h1>しょこの一日</h1>
-
-  <!-- ここにカレンダーとかTODOとか勤怠とか入る -->
-  <div id="calendar"></div>
 
 </div>
 
-<script src="script.js"></script>
+<script>
+  // 1枚目 → 2枚目 → 遷移
+  setTimeout(() => {
+    document.getElementById("image/logo1.png").classList.remove("active");
+    document.getElementById("image/logo2.png").classList.add("active");
+  }, 1000);
+
+  setTimeout(() => {
+    document.body.classList.add("fadeout");
+  }, 2000);
+
+  setTimeout(() => {
+    window.location.href = "work.html";
+  }, 2500);
+</script>
+
 </body>
 </html>

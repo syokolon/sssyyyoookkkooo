@@ -1,27 +1,37 @@
-#splash {
-  position: fixed;
-  inset: 0;
-  background: white;
+body {
+  margin: 0;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: white;
+  transition: opacity 0.5s ease;
+}
+
+body.fadeout {
+  opacity: 0;
+}
+
+#splash {
+   position: relative; 
+   text-align: center;
 }
 
 .logo {
   position: absolute;
-  width: 180px;
+  width: 200px;
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.8s ease;
 }
 
 .logo.active {
   opacity: 1;
 }
 
+
+
 .version {
-  position: absolute;
-  bottom: 40px;
-  font-size: 14px;
-  color: #888;
+  margin-top: 10px;
+  font-size: 12px;
+  color: gray;
 }
