@@ -31,7 +31,7 @@ body {
   height: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-   grid-auto-rows: 1fr;
+  grid-auto-rows: 1fr;
 }
 .day {
   position: relative;
