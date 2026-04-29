@@ -4,6 +4,13 @@ html, body {
   height: 100%;
 }
 body {
+  font-family: 
+    "Hiragino Kaku Gothic ProN",
+    "Noto Sans JP",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+
   margin: 0;
   background: white;
 }
