@@ -1,25 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>スプラッシュ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
 <div id="splash">
-  <img src="images/logo1.png" class="logo active" id="logo1">
-  <img src="images/logo2.png" class="logo" id="logo2">
-  <img src="images/logo_final.png" class="logo" id="logo3">
+
+<img src="images/logo1.png">
+  <img src="images/logo2.png">
+
+  <div class="version">ver 1.0.0</div>
+
 </div>
 
 <script>
+  // 1枚目 → 2枚目 → 遷移
   setTimeout(() => {
-    logo1.classList.remove("active");
-    logo2.classList.add("active");
+    document.getElementById("image/logo1.png").classList.remove("active");
+    document.getElementById("image/logo2.png").classList.add("active");
   }, 800);
 
   setTimeout(() => {
-    logo2.classList.remove("active");
-    logo3.classList.add("active");
-  }, 1400);
+    document.body.classList.add("fadeout");
+  }, 2000);
 
   setTimeout(() => {
     window.location.href = "work.html";
-  }, 2200);
+  }, 2500);
 </script>
 
 </body>
+</html>

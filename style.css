@@ -178,6 +178,7 @@ button {
   color: white;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 20px;  /* ←ここ */
 }
 
 button:last-child {
