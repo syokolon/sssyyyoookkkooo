@@ -23,13 +23,15 @@ body {
 }
 .calendar-wrap {
   width: 100%;
+  height: 100vh;
   max-width: none;
   margin: 0 auto;
 }
 #calendar {
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
+   grid-auto-rows: 1fr;
 }
 .day {
   position: relative;
@@ -40,7 +42,7 @@ body {
   border-radius: 10px;
   padding: 8px;
   min-height: 80px;
-
+  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -95,7 +97,7 @@ body {
   align-items: center;
    z-index: 1000;
 }
-@media (max-width: 600px) {
+@media (max-width: 100%) {
   .window {
     font-size: 20px;
   }
