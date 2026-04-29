@@ -1,33 +1,32 @@
-body {
-  margin: 0;
+bbody {
+    margin: 0;
   height: 100vh;
+  background: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: white;
+  font-family: sans-serif;
   transition: opacity 0.5s ease;
 }
-
 body.fadeout {
   opacity: 0;
 }
-
 #splash {
-   position: relative; 
-   text-align: center;
+  text-align: center;
+  position: relative;
 }
-
 .logo {
+  width: 180px;
   position: absolute;
-  width: 200px;
+  left: 50%;
+  transform: translateX(-50%);
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: all 0.5s ease;
 }
 
 .logo.active {
   opacity: 1;
 }
-
 
 
 .version {

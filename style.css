@@ -4,33 +4,8 @@ html, body {
   height: 100%;
 }
 body {
-    margin: 0;
-  height: 100vh;
+  margin: 0;
   background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-  transition: opacity 0.5s ease;
-}
-body.fadeout {
-  opacity: 0;
-}
-#splash {
-  text-align: center;
-  position: relative;
-}
-.logo {
-  width: 180px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  transition: all 0.5s ease;
-}
-
-.logo.active {
-  opacity: 1;
 }
 * {
   box-sizing: border-box;
@@ -59,11 +34,19 @@ body.fadeout {
   margin: 0 auto;
 }
 .day {
+  position: relative;
+  overflow: hidden;
+
   background: white;
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 8px;
   min-height: 80px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
   cursor: pointer;
   transition: 0.15s;
 }
@@ -281,10 +264,7 @@ button:last-child {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  faint-date{posolute;
-  }
-  rest-big{position: absolute;
-  }
+  
   font-size: 70px;
   font-weight: bold;
   color: rgba(0,0, 0, 0.2); /* ←ここが透明ポイント */
