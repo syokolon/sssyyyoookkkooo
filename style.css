@@ -128,7 +128,28 @@ body {
   width: 30px;
   vertical-align: middle;
 }
+.fab {
+  position: fixed;
+  bottom: 80px; /* バーとかぶらない位置 */
+  right: 20px;
 
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  background: #ff4081;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 24px;
+  cursor: pointer;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
 /* モーダル */
 .modal {
   position: fixed;
@@ -232,7 +253,7 @@ button:last-child {
 }
 
 .month-nav button {
-  padding: 5px 10px;
+  font-size: 22px;
 }
 .weekdays {
   display: grid;
@@ -240,6 +261,7 @@ button:last-child {
   margin-bottom: 5px;
   text-align: center;
   font-weight: bold;
+  font-size: 30px;
   width: 100%;
 }
 
@@ -347,7 +369,10 @@ button:last-child {
 #monthTotal.show {
   transform: translateY(0);
 }
-
+#monthLabel {
+  font-size: 24px;
+  font-weight: bold;
+}
 /* ボタン */
 #monthTotal {
   position: fixed;

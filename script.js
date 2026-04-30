@@ -1,7 +1,11 @@
 const calendar = document.getElementById("calendar");
 const stamp = document.getElementById("stamp");
 const stampImg = document.getElementById("stampImg");
+const fab = document.getElementById("fab");
 
+fab.addEventListener("click", () => {
+  totalBar.classList.toggle("show");
+});
 const modal = document.getElementById("modal");
 const suzuEl = document.getElementById("suzu");
 const hidaEl = document.getElementById("hida");
@@ -50,9 +54,7 @@ clearBtn.addEventListener("click", () => {
   updateTypeUI();
 
 });
-totalBtn.addEventListener("click", () => {
-  totalBar.classList.toggle("show");
-});
+
 let currentDate = new Date();
 let currentDay = null;
 let dayElements = {};
