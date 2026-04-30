@@ -15,7 +15,27 @@ const totalBtn = document.getElementById("toggleTotal");
 const totalBar = document.getElementById("monthTotal");
 
 const clearBtn = document.getElementById("clearBtn");
+window.addEventListener("load", () => {
+console.log("動いてる？");
+  // ①ロゴ切り替え
+  setTimeout(() => {
+    logo1.classList.remove("active");
+    logo1.style.opacity = 0; // ←これ追加
+    logo2.classList.add("active");
+  }, 800);
 
+  // ②フェード開始
+  setTimeout(() => {
+    splash.classList.add("fadeout");
+  }, 1500);
+
+  // ③画面切り替え
+  setTimeout(() => {
+    splash.style.display = "none";
+    app.style.display = "block";
+  }, 2100);
+
+});
 
 
 
@@ -40,6 +60,10 @@ let stampInterval;
 let selectedType = "";
 let isLunchSelected = false;
 const RATE = 1180;
+const splash = document.getElementById("splash");
+const app = document.getElementById("app");
+const logo1 = document.getElementById("image/logo1.png");
+const logo2 = document.getElementById("image/logo2.png");
 let lunchCount = 0;
 // ----------------------
 // 月キー
@@ -145,7 +169,26 @@ function renderDay(day) {
     </div>
   `;
 }
+window.addEventListener("load", () => {
 
+  // ①ロゴ切り替え
+  setTimeout(() => {
+    logo1.classList.remove("active");
+    logo2.classList.add("active");
+  }, 900);
+
+  // ②フェード開始
+  setTimeout(() => {
+    splash.classList.add("fadeout");
+  }, 1500);
+
+  // ③画面切り替え
+  setTimeout(() => {
+    splash.style.display = "none";
+    app.style.display = "block";
+  }, 2200);
+
+});
 // ----------------------
 // カレンダー作成
 // ----------------------

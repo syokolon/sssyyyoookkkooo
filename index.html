@@ -8,29 +8,26 @@
 <body>
 
 <div id="splash">
+  <img src="images/logo1.png" id="logo1" class="logo active">
+  <img src="images/logo2.png" id="logo2" class="logo">
 
-<img src="images/logo1.png">
-  <img src="images/logo2.png">
+  <div class="version">ver 1.260430.2222</div>
+</div>
 
-  <div class="version">ver 1.260430.0903</div>
-
+<div id="app" style="display:none;">
 </div>
 
 <script>
-  // 1枚目 → 2枚目 → 遷移
-  setTimeout(() => {
-    document.getElementById("image/logo1.png").classList.remove("active");
-    document.getElementById("image/logo2.png").classList.add("active");
-  }, 800);
+console.log("動いてる？");
 
-  setTimeout(() => {
-    document.body.classList.add("fadeout");
-  }, 2000);
+setTimeout(() => {
+  document.getElementById("logo1").classList.remove("active");
+  document.getElementById("logo2").classList.add("active");
+}, 1000);
 
-  setTimeout(() => {
-    window.location.href = "work.html";
-  }, 2500);
+setTimeout(() => {
+  window.location.href = "work.html";
+}, 2000);
 </script>
-
 </body>
 </html>
