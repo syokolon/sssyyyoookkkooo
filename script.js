@@ -17,7 +17,10 @@ const cancelBtn = document.getElementById("cancelBtn");
 const monthLabel = document.getElementById("monthLabel");
 const totalBtn = document.getElementById("toggleTotal");
 const totalBar = document.getElementById("monthTotal");
-
+const today = new Date();
+const todayDate = today.getDate();
+const todayMonth = today.getMonth();
+const todayYear = today.getFullYear();
 const clearBtn = document.getElementById("clearBtn");
 window.addEventListener("load", () => {
 console.log("動いてる？");

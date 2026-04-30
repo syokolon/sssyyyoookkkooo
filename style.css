@@ -114,7 +114,11 @@ body {
 .date {
   font-weight: bold;
 }
-
+.holiday {
+  font-size: 20px;   /* 好きなサイズに */
+  font-weight: bold;
+  color: red;        /* 目立たせるなら */
+}
 .total {
   font-size: 20px;
   color: #e91e63;
@@ -130,11 +134,11 @@ body {
 }
 .fab {
   position: fixed;
-  bottom: 80px; /* バーとかぶらない位置 */
+  bottom: 20%; /* バーとかぶらない位置 */
   right: 20px;
 
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
 
   background: #ff4081;
@@ -164,6 +168,13 @@ body {
   justify-content: center;
   align-items: center;
    z-index: 1000;
+}
+.modal button {
+  width: 100%;
+  height: 60px;       /* ボタンの高さを決める */
+  padding: 0;         /* ←余白なくすのが重要 */
+  font-size: 24px;    /* とりあえず大きめ */
+  line-height: 1;     /* 行間つぶす */
 }
 @media (max-width: 100%) {
   .window {
@@ -204,7 +215,11 @@ body {
   font-weight: bold;
   margin-bottom: 10px;
 }
-
+.count {
+  font-size: 32px;   /* 好きなサイズに */
+  font-weight: bold;
+  line-height: 1;
+}
 .row {
   display: flex;
   justify-content: space-between;
@@ -232,11 +247,11 @@ body {
 }
 
 button {
-  padding: 30px 20px;
+  padding: 14px 20px;
   border: none;
   background: #4caf50;
   color: white;
-  border-radius: 6px;
+  border-radius: 12px;
   cursor: pointer;
   font-size: 20px;  /* ←ここ */
 }
@@ -253,7 +268,7 @@ button:last-child {
 }
 
 .month-nav button {
-  font-size: 22px;
+  font-size: 30px;
 }
 .weekdays {
   display: grid;
@@ -263,6 +278,17 @@ button:last-child {
   font-weight: bold;
   font-size: 30px;
   width: 100%;
+}
+.today {
+  border: 2px solid #ff4d6d;
+  background: #ffeaf0;
+}
+
+.today .date {
+  background: #ff4d6d;
+  color: white;
+  border-radius: 50%;
+  padding: 4px 8px;
 }
 
 .weekdays div:nth-child(1) {
@@ -306,11 +332,7 @@ button:last-child {
 }
 
 
-/* 拠点カラー */
-.suzu { color: #ff6fae; font-weight: bold; }
-.hida { color: #4dd0e1; font-weight: bold; }
-.nade { color: #81c784; font-weight: bold; }
-.aji  { color: #ba68c8; font-weight: bold; }
+
 .show {
   display: block; /* or flex */
 }
