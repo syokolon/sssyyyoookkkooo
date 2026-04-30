@@ -125,22 +125,22 @@ function renderDay(day) {
     <div class="total">合計: ${total}h</div>
 
     <div class="place">
-      <img src="images/suzuran.png">
-      す ${d.suzu}h
+      
+      すず ${d.suzu}h
     </div>
 
     <div class="place">
-      <img src="images/hidamari.png">
+    
       ひだ ${d.hida}h
     </div>
 
     <div class="place">
-      <img src="images/nadeshiko.png">
+    
       なで ${d.nade}h
     </div>
 
     <div class="place">
-      <img src="images/ajisai.png">
+    
       あじ ${d.aji}h
     </div>
   `;
