@@ -88,7 +88,7 @@ body {
   
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
 
   cursor: pointer;
   transition: 0.15s;
@@ -116,12 +116,16 @@ body {
 }
 
 .total {
-  font-size: 14px;
+  font-size: 20px;
   color: #e91e63;
 }
-
+.place {
+  font-size: 20px;
+  font-weight: middle;
+   line-height: 1.2;
+}
 .place img {
-  width: 16px;
+  width: 30px;
   vertical-align: middle;
 }
 
@@ -251,7 +255,7 @@ button:last-child {
     overflow: hidden;
      display: flex;
       flex-direction:column;
-       justify-content: flex-start;
+       justify-content: space-between;
 }
 .day:active {
   transform: scale(0.95);
