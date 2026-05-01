@@ -89,56 +89,69 @@
   </div>
   
     <img src="images/right1.png" id="walker">
-  <script>
-
-
+<script>
 const walker = document.getElementById("walker");
 
-const right = [
-  "images/right1.png",
-  "images/right2.png",
-  "images/right3.png"
-];
+const frames = {
+  right: ["images/right1.png","images/right2.png","images/right3.png"],
+  left: ["images/left1.png","images/left2.png","images/left3.png"],
+  front: ["images/front1.png","images/front2.png","images/front3.png"],
+  back: ["images/back1.png","images/back2.png","images/back3.png"]
+};
 
-const left = [
-  "images/left1.png",
-  "images/left2.png",
-  "images/left3.png"
-];
+let x = 100;
+let y = 100;
 
-let x = 0;
-let speed = 2;
+let speedX = 2;
+let speedY = 1;
+
 let i = 0;
-let goingRight = true;
+let direction = "right";
 
 let lastFrameTime = 0;
-const frameDelay = 150; // コマの速さ
+const frameDelay = 150;
+
+// ランダム方向変更
+function changeDirection() {
+  const angle = Math.random() * Math.PI * 2;
+
+  speedX = Math.cos(angle) * 2;
+  speedY = Math.sin(angle) * 2;
+
+  // 向き決定
+  if (Math.abs(speedX) > Math.abs(speedY)) {
+    direction = speedX > 0 ? "right" : "left";
+  } else {
+    direction = speedY > 0 ? "front" : "back";
+  }
+}
+
+// 最初＆3秒ごとに方向変える
+changeDirection();
+setInterval(changeDirection, 3000);
 
 function loop(time) {
-  // 位置は毎フレーム動かす
-  x += speed;
+
+  x += speedX;
+  y += speedY;
+
+  const maxX = window.innerWidth - walker.offsetWidth;
+  const maxY = window.innerHeight - walker.offsetHeight;
+
+  // 壁に当たったら跳ね返る
+  if (x <= 0 || x >= maxX) {
+    speedX *= -1;
+  }
+  if (y <= 0 || y >= maxY) {
+    speedY *= -1;
+  }
+
   walker.style.left = x + "px";
+  walker.style.top = y + "px";
 
-  const max = window.innerWidth - walker.offsetWidth;
-
-  // 端で反転
-  if (x >= max) {
-    speed = -speed;
-    goingRight = false;
-  }
-  if (x <= 0) {
-    speed = -speed;
-    goingRight = true;
-  }
-
-  // コマ送りは間引く（ここ重要）
+  // コマ送り
   if (time - lastFrameTime > frameDelay) {
-    if (goingRight) {
-      walker.src = right[i];
-    } else {
-      walker.src = left[i];
-    }
-
+    walker.src = frames[direction][i];
     i = (i + 1) % 3;
     lastFrameTime = time;
   }
@@ -147,9 +160,9 @@ function loop(time) {
 }
 
 requestAnimationFrame(loop);
+</script>
 <img src="images/right1.png" id="walker">
 <div id="speech"></div>
-</script>
  
 <!-- 👇スタンプはscriptより上！ -->
 <div id="stamp" class="hidden">
