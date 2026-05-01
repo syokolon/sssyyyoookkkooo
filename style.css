@@ -17,6 +17,81 @@ body {
 * {
   box-sizing: border-box;
 }
+<script>
+const walker = document.getElementById("walker");
+
+// 画像セット
+const frames = {
+  right: [
+    "images/right1.png",
+    "images/right2.png",
+    "images/right3.png"
+  ],
+  left: [
+    "images/left1.png",
+    "images/left2.png",
+    "images/left3.png"
+  ],
+  front: [
+    "images/front1.png",
+    "images/front2.png",
+    "images/front3.png"
+  ],
+  back: [
+    "images/back1.png",
+    "images/back2.png",
+    "images/back3.png"
+  ]
+};
+
+let x = 0;
+let speed = 2;
+let frameIndex = 0;
+let direction = "right";
+let turning = false;
+
+// メインループ
+function animate() {
+  if (!turning) {
+    x += speed;
+    walker.style.left = x + "px";
+  }
+
+  const screenWidth = window.innerWidth;
+  const charWidth = walker.offsetWidth;
+
+  // 端に来たらターン演出
+  if (!turning && x + charWidth >= screenWidth) {
+    turning = true;
+    direction = "front"; // こっち向く
+    setTimeout(() => {
+      speed = -speed;
+      direction = "left";
+      turning = false;
+    }, 500);
+  }
+
+  if (!turning && x <= 0) {
+    turning = true;
+    direction = "back"; // 後ろ向き
+    setTimeout(() => {
+      speed = -speed;
+      direction = "right";
+      turning = false;
+    }, 500);
+  }
+
+  // フレーム切り替え
+  const currentFrames = frames[direction];
+  walker.src = currentFrames[frameIndex];
+
+  frameIndex = (frameIndex + 1) % 3;
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
 .version {
   margin-top: 220px;
   font-size: 12px;
@@ -331,7 +406,13 @@ button:last-child {
   display: none;
 }
 
-
+#walker {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  width: 90px;
+  z-index: 9999;
+}
 
 .show {
   display: block; /* or flex */

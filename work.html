@@ -83,10 +83,71 @@
 </div>
 
 
-    
-  </div>
 </div>
 
+ 
+  </div>
+  
+    <img src="images/right1.png" id="walker">
+  <script>
+
+
+const walker = document.getElementById("walker");
+
+const right = [
+  "images/right1.png",
+  "images/right2.png",
+  "images/right3.png"
+];
+
+const left = [
+  "images/left1.png",
+  "images/left2.png",
+  "images/left3.png"
+];
+
+let x = 0;
+let speed = 2;
+let i = 0;
+let goingRight = true;
+
+let lastFrameTime = 0;
+const frameDelay = 150; // コマの速さ
+
+function loop(time) {
+  // 位置は毎フレーム動かす
+  x += speed;
+  walker.style.left = x + "px";
+
+  const max = window.innerWidth - walker.offsetWidth;
+
+  // 端で反転
+  if (x >= max) {
+    speed = -speed;
+    goingRight = false;
+  }
+  if (x <= 0) {
+    speed = -speed;
+    goingRight = true;
+  }
+
+  // コマ送りは間引く（ここ重要）
+  if (time - lastFrameTime > frameDelay) {
+    if (goingRight) {
+      walker.src = right[i];
+    } else {
+      walker.src = left[i];
+    }
+
+    i = (i + 1) % 3;
+    lastFrameTime = time;
+  }
+
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+</script>
  
 <!-- 👇スタンプはscriptより上！ -->
 <div id="stamp" class="hidden">
