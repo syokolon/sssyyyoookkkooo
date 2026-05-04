@@ -11,7 +11,7 @@ const suzuEl = document.getElementById("suzu");
 const hidaEl = document.getElementById("hida");
 const nadeEl = document.getElementById("nade");
 const ajiEl = document.getElementById("aji");
-
+const speech = document.getElementById("speech");
 const okBtn = document.getElementById("okBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 const monthLabel = document.getElementById("monthLabel");
@@ -377,7 +377,37 @@ function updateTypeUI() {
   lunchBtn.classList.add("active");
 }
 }
+function autoTalk() {
+  const messages = [
+    "こんにちは！",
+    "今日もがんばろ〜",
+    "おつかれさま！",
+    "いい感じやね👍"
+  ];
 
+  const msg = messages[Math.floor(Math.random() * messages.length)];
+  talk(msg);
+
+  // 次はランダム時間（3〜8秒）
+  const next = Math.random() * 5000 + 3000;
+  setTimeout(autoTalk, next);
+}
+
+// スタート
+autoTalk();
+function talk(text) {
+  speech.innerText = text;
+  speech.style.display = "block";
+
+  // キャラの位置に合わせる
+  speech.style.left = (x + 20) + "px";
+  speech.style.top = (y - 40) + "px";
+
+  // 2秒で消える
+  setTimeout(() => {
+    speech.style.display = "none";
+  }, 2000);
+}
 function updateMonthTotal() {
   let suzu = 0;
   let hida = 0;

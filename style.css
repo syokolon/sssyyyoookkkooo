@@ -188,6 +188,7 @@ animate();
 
 .date {
   font-weight: bold;
+   font-size: 20px;
 }
 .holiday {
   font-size: 20px;   /* 好きなサイズに */
@@ -285,7 +286,17 @@ animate();
   font-size: 18px;
   line-height: 1.6;
 }
+#speech {
+  position: absolute;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 2px solid #333;
+  font-size: 30px;
 
+  display: none; /* 最初は非表示 */
+  pointer-events: none;
+}
 .title-bar {
   font-weight: bold;
   margin-bottom: 10px;
@@ -303,14 +314,19 @@ animate();
 }
 
 .row button {
-  width: 30px;
-  height: 30px;
+   font-size: 20px;
+  width: 40px;
+  height: 40px;
   border: none;
   background: #eee;
-  border-radius: 6px;
+  border-radius: 50%;
   cursor: pointer;
 }
 
+.row span {
+  font-size: 22px;   /* 数字の大きさ */
+  margin: 0 10px;
+}
 .row button:hover {
   background: #ddd;
 }
@@ -394,13 +410,15 @@ button:last-child {
   z-index: 999;
 }
 
+
 #stamp.show {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
 
 #stamp img {
-  width: 120px;
+  width: 80%;
+  width: 500px;
 }
 .hidden {
   display: none;
