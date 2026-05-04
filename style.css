@@ -265,9 +265,13 @@ animate();
   align-items: center;
   justify-content: center;
 }
+
 .modal-content {
   width: 95%;
   max-width: 500px;
+}
+.modal.show .modal-content {
+  animation: ponyoPop 0.35s ease;
 }
 .hidden {
   display: none;
@@ -517,7 +521,19 @@ button:last-child {
 #monthTotal.show {
   transform: translateY(0);
 }
-
+@keyframes ponyoPop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1); /* ちょい大きくなる */
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 button.active {
   background: #ffcc80;
   color: #000;
