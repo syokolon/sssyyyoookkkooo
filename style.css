@@ -519,8 +519,21 @@ button.active {
   font-size: 14px;
 }
 
-
-
+.fab {
+  font-size: 50px;   /* ←絵文字の大きさ */
+  width: 150px;       /* ←ボタンの大きさ */
+  height: 150px;
+background-color: #55cea6; /* ←好きな色 */
+  color: white;              /* ←絵文字の色（必要なら） */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+#walker {
+  width: 150px;   /* ←ここで大きさ決める */
+  position: absolute;
+}
 .title {
   display: none;
 }
