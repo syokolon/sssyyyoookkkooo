@@ -290,8 +290,7 @@ animate();
   position: absolute;
   background: white;
   padding: 10px 14px;
-  border-radius: 12px;
-  border: 2px solid #333;
+   box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
   font-size: 30px;
 
   display: none; /* 最初は非表示 */
@@ -417,8 +416,8 @@ button:last-child {
 }
 
 #stamp img {
-  width: 80%;
-  width: 500px;
+  width: 90vw;
+
 }
 .hidden {
   display: none;
