@@ -1,0 +1,35 @@
+body {
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+.input-area {
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+li {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.month-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.done {
+  text-decoration: line-through;
+  color: gray;
+}

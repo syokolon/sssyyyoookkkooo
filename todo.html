@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>TODO</title>
+  <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+
+<h1>TODOリスト</h1>
+<div class="month-nav">
+  <button onclick="prevMonth()">←</button>
+  <span id="monthLabel"></span>
+  <button onclick="nextMonth()">→</button>
+</div>
+<div class="input-area">
+  <input type="text" id="taskInput" placeholder="やること入力">
+  <button onclick="addTask()">追加</button>
+</div>
+
+<ul id="taskList"></ul>
+
+<script src="todo.js"></script>
+</body>
+</html>
