@@ -1,35 +1,216 @@
-body {
-  font-family: sans-serif;
-  padding: 20px;
+/* 全体 */
+body{
+  margin:0;
+  padding:0;
+
+  background:#FFF8F2;
+
+  font-family:sans-serif;
 }
 
-.input-area {
-  margin-bottom: 20px;
+/* タイトル */
+.header{
+  padding:20px;
+
+  font-size:28px;
+
+  font-weight:bold;
+
+  color:#555;
 }
 
-input {
-  padding: 10px;
-  font-size: 16px;
+/* フォルダ一覧 */
+#folderList{
+
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:14px;
+
+  padding:14px;
+
+  padding-bottom:120px;
 }
 
-button {
-  padding: 10px;
-  font-size: 16px;
+/* フォルダ */
+.folder{
+
+  aspect-ratio:1/1;
+
+  border-radius:28px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  font-size:20px;
+
+  color:#444;
+
+  box-shadow:0 4px 10px rgba(0,0,0,0.12);
+
+  transition:0.15s;
 }
 
-li {
-  margin: 10px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* 押した時 */
+.folder:active{
+
+  transform:scale(0.95);
 }
-.month-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
+
+/* アイコン */
+.icon{
+
+  font-size:46px;
+
+  margin-bottom:10px;
 }
-.done {
-  text-decoration: line-through;
-  color: gray;
+
+/* ＋ボタン */
+#addFolderBtn{
+
+  position:fixed;
+
+  right:20px;
+
+  bottom:25px;
+
+  width:72px;
+
+  height:72px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:#FFD966;
+
+  color:#444;
+
+  font-size:42px;
+
+  box-shadow:0 6px 14px rgba(0,0,0,0.2);
+
+  z-index:100;
+}
+
+/* ボタン押した時 */
+#addFolderBtn:active{
+
+  transform:scale(0.92);
+}
+
+/* モーダル背景 */
+#modal{
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,0.3);
+
+  display:none;
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:200;
+}
+
+/* モーダル本体 */
+.modalBox{
+
+  width:80%;
+
+  background:white;
+
+  border-radius:28px;
+
+  padding:25px;
+
+  text-align:center;
+
+  animation:pop 0.2s ease;
+}
+
+/* ポニョアニメ */
+@keyframes pop{
+
+  0%{
+    transform:scale(0.7);
+    opacity:0;
+  }
+
+  100%{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* タイトル */
+.modalBox h2{
+
+  margin-top:0;
+
+  color:#555;
+}
+
+/* 入力欄 */
+.modalBox input{
+
+  width:90%;
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:16px;
+
+  background:#F4F4F4;
+
+  font-size:18px;
+
+  outline:none;
+}
+
+/* ボタン並び */
+.modalButtons{
+
+  margin-top:20px;
+
+  display:flex;
+
+  gap:10px;
+}
+
+/* モーダルボタン */
+.modalButtons button{
+
+  flex:1;
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:18px;
+
+  font-size:18px;
+}
+
+/* 作成ボタン */
+#createBtn{
+
+  background:#FFD966;
+}
+
+/* キャンセル */
+#cancelBtn{
+
+  background:#EEE;
 }
