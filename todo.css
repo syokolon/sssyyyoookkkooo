@@ -164,7 +164,41 @@ body{
 
   color:#555;
 }
+/* 月ヘッダー */
+#calendarHeader{
+  display:flex;
 
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:0 20px 20px;
+}
+
+/* 月タイトル */
+#monthTitle{
+  font-size:28px;
+
+  font-weight:bold;
+
+  color:#555;
+}
+
+/* ← → ボタン */
+#calendarHeader button{
+  border:none;
+
+  background:white;
+
+  width:50px;
+  height:50px;
+
+  border-radius:16px;
+
+  font-size:24px;
+
+  box-shadow:0 3px 8px rgba(0,0,0,0.12);
+}
 /* 入力欄 */
 .modalBox input{
 

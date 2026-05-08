@@ -202,7 +202,7 @@ body{
 <div class="header">
   📁 やるべきこと
 </div>
-<div id="calendarHeader"></div>
+
 <!-- フォルダ一覧 -->
 <div id="folderList"></div>
 
@@ -237,20 +237,46 @@ body{
   </div>
 
 </div>
+<div id="calendarHeader">
+
+  <button id="prevBtn">←</button>
+
+  <div id="monthTitle"></div>
+
+  <button id="nextBtn">→</button>
+
+</div>
 
 <script>
 
-const folderList = document.getElementById("folderList");
 
-const addFolderBtn = document.getElementById("addFolderBtn");
+/* 要素取得 */
+const folderList =
+document.getElementById("folderList");
 
-const modal = document.getElementById("modal");
+const addFolderBtn =
+document.getElementById("addFolderBtn");
 
-const folderInput = document.getElementById("folderInput");
+const modal =
+document.getElementById("modal");
 
-const createBtn = document.getElementById("createBtn");
+const folderInput =
+document.getElementById("folderInput");
 
-const cancelBtn = document.getElementById("cancelBtn");
+const createBtn =
+document.getElementById("createBtn");
+
+const cancelBtn =
+document.getElementById("cancelBtn");
+
+const monthTitle =
+document.getElementById("monthTitle");
+
+const prevBtn =
+document.getElementById("prevBtn");
+
+const nextBtn =
+document.getElementById("nextBtn");
 
 /* 色 */
 const colors = [
@@ -266,7 +292,59 @@ const colors = [
 
 let colorIndex = 0;
 
-/* ＋押した */
+/* 月ごとの保存 */
+const foldersByMonth = {};
+
+/* 現在月 */
+let currentDate = new Date();
+
+/* 月表示 */
+function renderMonth(){
+
+  const year =
+  currentDate.getFullYear();
+
+  const month =
+  currentDate.getMonth() + 1;
+
+  monthTitle.textContent =
+  `${year}年 ${month}月`;
+
+}
+
+/* フォルダ表示 */
+function renderFolders(){
+
+  folderList.innerHTML = "";
+
+  const key =
+  `${currentDate.getFullYear()}-${currentDate.getMonth()}`;
+
+  const folders =
+  foldersByMonth[key] || [];
+
+  folders.forEach(data => {
+
+    const folder =
+    document.createElement("div");
+
+    folder.className = "folder";
+
+    folder.style.background =
+    data.color;
+
+    folder.innerHTML = `
+      <div class="icon">📁</div>
+      <div>${data.name}</div>
+    `;
+
+    folderList.appendChild(folder);
+
+  });
+
+}
+
+/* ＋ボタン */
 addFolderBtn.addEventListener("click", () => {
 
   modal.style.display = "flex";
@@ -287,26 +365,36 @@ cancelBtn.addEventListener("click", () => {
 /* 作成 */
 createBtn.addEventListener("click", createFolder);
 
-/* Enterでも作成 */
+/* Enter */
 folderInput.addEventListener("keydown", (e) => {
 
   if(e.key === "Enter"){
+
     createFolder();
+
   }
 
 });
 
+/* フォルダ作成 */
 function createFolder(){
 
-  const folderName = folderInput.value.trim();
+  const folderName =
+  folderInput.value.trim();
 
   if(folderName === "") return;
 
-  const folder = document.createElement("div");
+  const key =
+  `${currentDate.getFullYear()}-${currentDate.getMonth()}`;
 
-  folder.className = "folder";
+  if(!foldersByMonth[key]){
+    foldersByMonth[key] = [];
+  }
 
-  folder.style.background = colors[colorIndex];
+  foldersByMonth[key].push({
+    name: folderName,
+    color: colors[colorIndex]
+  });
 
   colorIndex++;
 
@@ -314,18 +402,42 @@ function createFolder(){
     colorIndex = 0;
   }
 
-  folder.innerHTML = `
-    <div class="icon">📁</div>
-    <div>${folderName}</div>
-  `;
-
-  folderList.appendChild(folder);
+  renderFolders();
 
   modal.style.display = "none";
 
 }
 
+/* ← */
+prevBtn.addEventListener("click", () => {
+
+  currentDate.setMonth(
+    currentDate.getMonth() - 1
+  );
+
+  renderMonth();
+  renderFolders();
+
+});
+
+/* → */
+nextBtn.addEventListener("click", () => {
+
+  currentDate.setMonth(
+    currentDate.getMonth() + 1
+  );
+
+  renderMonth();
+  renderFolders();
+
+});
+
+/* 最初 */
+renderMonth();
+renderFolders();
+
 </script>
+
 
 </body>
 </html>
