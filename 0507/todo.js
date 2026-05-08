@@ -13,10 +13,7 @@ document.getElementById("prevBtn");
 
 const nextBtn =
 document.getElementById("nextBtn");
-const calendar =
-document.getElementById("calendar");
 
-function renderMonth(){
 /* 月 */
 let currentDate = new Date();
 

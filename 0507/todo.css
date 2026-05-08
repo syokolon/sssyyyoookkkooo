@@ -18,13 +18,7 @@ body{
 
   color:#555;
 }
-.navBtn{
-  width:50px;
-  height:50px;
-  border:none;
-  border-radius:50%;
-  font-size:24px;
-}
+
 /* フォルダ一覧 */
 #folderList{
 
@@ -256,40 +250,3 @@ body{
   box-shadow:0 2px 6px rgba(0,0,0,0.15);
 }
 
-#addFolderBtn{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-
-  width:70px;
-  height:70px;
-
-  border-radius:50%;
-  font-size:36px;
-}
-#calendar{
-  display:grid;
-
-  grid-template-columns:
-  repeat(7,1fr);
-
-  gap:10px;
-
-  padding:20px;
-}
-
-.day{
-  background:white;
-
-  height:80px;
-
-  border-radius:15px;
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  font-size:20px;
-}
