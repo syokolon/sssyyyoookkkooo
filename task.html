@@ -2,7 +2,8 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>しょこのやるべきこと</title>
 
@@ -14,8 +15,7 @@ body{
   background:#FFF8F2;
   font-family:sans-serif;
 }
-<link rel="stylesheet" href="todo.css">
-<script src="todo.js"></script>
+
 /* タイトル */
 .header{
   padding:20px;
@@ -24,7 +24,7 @@ body{
   color:#555;
 }
 
-/* カレンダーヘッダー */
+/* 月切り替え */
 #calendarHeader{
   display:flex;
   justify-content:space-between;
@@ -58,6 +58,7 @@ body{
 /* フォルダ */
 .folder{
   aspect-ratio:1/1;
+
   border-radius:28px;
 
   display:flex;
@@ -114,7 +115,7 @@ body{
   transform:scale(0.92);
 }
 
-/* モーダル背景 */
+/* モーダル */
 #modal{
   position:fixed;
 
@@ -130,7 +131,6 @@ body{
   z-index:200;
 }
 
-/* モーダル */
 .modalBox{
   width:80%;
 
@@ -147,6 +147,7 @@ body{
 
 /* ポニョ */
 @keyframes pop{
+
   0%{
     transform:scale(0.7);
     opacity:0;
@@ -156,6 +157,7 @@ body{
     transform:scale(1);
     opacity:1;
   }
+
 }
 
 .modalBox h2{
@@ -179,7 +181,6 @@ body{
   outline:none;
 }
 
-/* ボタン */
 .modalButtons{
   margin-top:20px;
 
@@ -218,7 +219,6 @@ body{
 </div>
 
 <!-- 月切り替え -->
- <h1 id="title"></h1>
 <div id="calendarHeader">
 
   <button id="prevBtn">←</button>
@@ -228,17 +228,7 @@ body{
   <button id="nextBtn">→</button>
 
 </div>
-<input
-type="text"
-id="taskInput"
-placeholder="やること入力"
->
 
-<button id="addBtn">
-追加
-</button>
-
-<ul id="taskList"></ul>
 <!-- フォルダ一覧 -->
 <div id="folderList"></div>
 
@@ -352,7 +342,8 @@ function renderFolders(){
 
   folderList.innerHTML = "";
 
-  const key = getMonthKey();
+  const key =
+  getMonthKey();
 
   if(!foldersByMonth[key]){
     foldersByMonth[key] = [];
@@ -372,6 +363,15 @@ function renderFolders(){
       <div class="icon">📁</div>
       <div>${folderData.name}</div>
     `;
+
+    /* クリック */
+    folder.addEventListener("click", () => {
+
+      location.href =
+      "task.html?folder=" +
+      encodeURIComponent(folderData.name);
+
+    });
 
     folderList.appendChild(folder);
 
@@ -404,7 +404,7 @@ nextBtn.addEventListener("click", () => {
 
 });
 
-/* ＋ボタン */
+/* ＋ */
 addFolderBtn.addEventListener("click", () => {
 
   modal.style.display = "flex";
@@ -454,14 +454,11 @@ createBtn.addEventListener("click", () => {
   modal.style.display = "none";
 
 });
-/* フォルダクリック */
-folder.addEventListener("click", () => {
+<button onclick="exportMonthExcel()">
+📄 Excel出力
+</button>
 
-  location.href =
-  "task.html?folder=" +
-  encodeURIComponent(folderData.name);
-
-});
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 </script>
 
 </body>

@@ -8,14 +8,15 @@
 
 <style>
 
+
 body{
   margin:0;
   padding:0;
   background:#FFF8F2;
   font-family:sans-serif;
 }
-<link rel="stylesheet" href="todo.css">
-<script src="todo.js"></script>
+
+
 /* タイトル */
 .header{
   padding:20px;
@@ -24,40 +25,23 @@ body{
   color:#555;
 }
 
-/* カレンダーヘッダー */
-#calendarHeader{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:0 20px 20px;
-}
-
-#monthTitle{
-  font-size:24px;
-  font-weight:bold;
-  color:#555;
-}
-
-#calendarHeader button{
-  border:none;
-  background:#FFD966;
-  border-radius:14px;
-  padding:10px 16px;
-  font-size:18px;
-}
-
 /* フォルダ一覧 */
 #folderList{
   display:grid;
+
   grid-template-columns:repeat(2,1fr);
+
   gap:14px;
+
   padding:14px;
+
   padding-bottom:120px;
 }
 
 /* フォルダ */
 .folder{
   aspect-ratio:1/1;
+
   border-radius:28px;
 
   display:flex;
@@ -130,7 +114,7 @@ body{
   z-index:200;
 }
 
-/* モーダル */
+/* モーダル本体 */
 .modalBox{
   width:80%;
 
@@ -179,7 +163,7 @@ body{
   outline:none;
 }
 
-/* ボタン */
+/* ボタンエリア */
 .modalButtons{
   margin-top:20px;
 
@@ -188,6 +172,7 @@ body{
   gap:10px;
 }
 
+/* モーダルボタン */
 .modalButtons button{
   flex:1;
 
@@ -211,37 +196,39 @@ body{
 </style>
 </head>
 
+
 <body>
 
 <div class="header">
   📁 やるべきこと
 </div>
 
-<!-- 月切り替え -->
- <h1 id="title"></h1>
-<div id="calendarHeader">
-
-  <button id="prevBtn">←</button>
-
-  <div id="monthTitle"></div>
-
-  <button id="nextBtn">→</button>
-
-</div>
-<input
-type="text"
-id="taskInput"
-placeholder="やること入力"
->
-
-<button id="addBtn">
-追加
-</button>
-
-<ul id="taskList"></ul>
 <!-- フォルダ一覧 -->
 <div id="folderList"></div>
 
+<!-- Todo画面 -->
+<div id="todoPage" style="display:none;">
+
+  <button id="backBtn">← 戻る</button>
+
+  <h2 id="todoTitle"></h2>
+
+  <div>
+     <input
+      type="text"
+      id="taskInput"
+      placeholder="やること入力"
+    >
+
+    <button id="addTaskBtn">
+      追加
+    </button>
+
+  </div>
+
+  <ul id="taskList"></ul>
+
+</div>
 <!-- ＋ボタン -->
 <button id="addFolderBtn">＋</button>
 
@@ -273,8 +260,18 @@ placeholder="やること入力"
   </div>
 
 </div>
+<div id="calendarHeader">
+
+  <button id="prevBtn">←</button>
+
+  <div id="monthTitle"></div>
+
+  <button id="nextBtn">→</button>
+
+</div>
 
 <script>
+
 
 /* 要素取得 */
 const folderList =
@@ -324,13 +321,6 @@ const foldersByMonth = {};
 /* 現在月 */
 let currentDate = new Date();
 
-/* 月キー */
-function getMonthKey(){
-
-  return `${currentDate.getFullYear()}-${currentDate.getMonth()}`;
-
-}
-
 /* 月表示 */
 function renderMonth(){
 
@@ -343,8 +333,6 @@ function renderMonth(){
   monthTitle.textContent =
   `${year}年 ${month}月`;
 
-  renderFolders();
-
 }
 
 /* フォルダ表示 */
@@ -352,13 +340,13 @@ function renderFolders(){
 
   folderList.innerHTML = "";
 
-  const key = getMonthKey();
+  const key =
+  `${currentDate.getFullYear()}-${currentDate.getMonth()}`;
 
-  if(!foldersByMonth[key]){
-    foldersByMonth[key] = [];
-  }
+  const folders =
+  foldersByMonth[key] || [];
 
-  foldersByMonth[key].forEach(folderData => {
+  folders.forEach(data => {
 
     const folder =
     document.createElement("div");
@@ -366,48 +354,36 @@ function renderFolders(){
     folder.className = "folder";
 
     folder.style.background =
-    folderData.color;
+    data.color;
 
     folder.innerHTML = `
       <div class="icon">📁</div>
-      <div>${folderData.name}</div>
+      <div>${data.name}</div>
     `;
+folder.addEventListener("click", () => {
 
+  folderList.style.display = "none";
+
+  todoPage.style.display = "block";
+
+  todoTitle.textContent =
+  data.name;
+
+});
     folderList.appendChild(folder);
 
   });
 
 }
 
-/* 最初 */
-renderMonth();
-
-/* ← */
-prevBtn.addEventListener("click", () => {
-
-  currentDate.setMonth(
-    currentDate.getMonth() - 1
-  );
-
-  renderMonth();
-
-});
-
-/* → */
-nextBtn.addEventListener("click", () => {
-
-  currentDate.setMonth(
-    currentDate.getMonth() + 1
-  );
-
-  renderMonth();
-
-});
-
 /* ＋ボタン */
 addFolderBtn.addEventListener("click", () => {
 
   modal.style.display = "flex";
+
+  folderInput.value = "";
+
+  folderInput.focus();
 
 });
 
@@ -419,15 +395,38 @@ cancelBtn.addEventListener("click", () => {
 });
 
 /* 作成 */
-createBtn.addEventListener("click", () => {
+createBtn.addEventListener("click", createFolder);
 
-  const name =
+/* Enter */
+folderInput.addEventListener("keydown", (e) => {
+
+  if(e.key === "Enter"){
+
+    createFolder();
+
+  }
+
+});
+
+/* フォルダ作成 */
+function createFolder(){
+
+  const folderName =
   folderInput.value.trim();
 
-  if(name === "") return;
+  if(folderName === "") return;
 
-  const color =
-  colors[colorIndex];
+  const key =
+  `${currentDate.getFullYear()}-${currentDate.getMonth()}`;
+
+  if(!foldersByMonth[key]){
+    foldersByMonth[key] = [];
+  }
+
+  foldersByMonth[key].push({
+    name: folderName,
+    color: colors[colorIndex]
+  });
 
   colorIndex++;
 
@@ -435,34 +434,67 @@ createBtn.addEventListener("click", () => {
     colorIndex = 0;
   }
 
-  const key =
-  getMonthKey();
-
-  if(!foldersByMonth[key]){
-    foldersByMonth[key] = [];
-  }
-
-  foldersByMonth[key].push({
-    name:name,
-    color:color
-  });
-
   renderFolders();
-
-  folderInput.value = "";
 
   modal.style.display = "none";
 
-});
-/* フォルダクリック */
-folder.addEventListener("click", () => {
+}
 
-  location.href =
-  "task.html?folder=" +
-  encodeURIComponent(folderData.name);
+/* ← */
+prevBtn.addEventListener("click", () => {
+
+  currentDate.setMonth(
+    currentDate.getMonth() - 1
+  );
+
+  renderMonth();
+  renderFolders();
+
+});
+
+/* → */
+nextBtn.addEventListener("click", () => {
+
+  currentDate.setMonth(
+    currentDate.getMonth() + 1
+  );
+
+  renderMonth();
+  renderFolders();
+
+});
+
+/* 最初 */
+renderMonth();
+renderFolders();
+const taskInput =
+document.getElementById("taskInput");
+
+const addTaskBtn =
+document.getElementById("addTaskBtn");
+
+const taskList =
+document.getElementById("taskList");
+
+addTaskBtn.addEventListener("click", () => {
+
+  const text =
+  taskInput.value.trim();
+
+  if(text === "") return;
+
+  const li =
+  document.createElement("li");
+
+  li.textContent = text;
+
+  taskList.appendChild(li);
+
+  taskInput.value = "";
 
 });
 </script>
+
 
 </body>
 </html>

@@ -467,3 +467,77 @@ document.getElementById("nextMonth").addEventListener("click", () => {
 
 renderCalendar();
 updateMonthLabel();
+const excelBtn = document.getElementById("excelBtn");
+
+excelBtn.addEventListener("click", exportExcel);
+
+function exportExcel() {
+
+  const rows = [];
+
+  rows.push([
+    "日付",
+    "すずらん",
+    "ひだまり",
+    "なでしこ",
+    "あじさい",
+    "合計時間",
+    "ランチ",
+    "タイプ",
+    "金額"
+  ]);
+
+  let totalHours = 0;
+  let totalMoney = 0;
+  for (let day in data) {
+
+    const d = data[day];
+
+    const dayTotal =
+      (d.suzu || 0) +
+      (d.hida || 0) +
+      (d.nade || 0) +
+      (d.aji || 0);
+
+    const money = dayTotal * RATE;
+
+    totalHours += dayTotal;
+    totalMoney += money;
+
+    rows.push([
+      `${currentDate.getFullYear()}/${currentDate.getMonth() + 1}/${day}`,
+      d.suzu || 0,
+      d.hida || 0,
+      d.nade || 0,
+      d.aji || 0,
+      dayTotal,
+      d.lunch ? "あり" : "",
+       d.type || "",
+      money
+    ]);
+  }
+
+  rows.push([]);
+
+  rows.push([
+    "月合計",
+    "",
+    "",
+    "",
+    "",
+    totalHours,
+    "",
+    "",
+    totalMoney
+  ]);
+
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  const wb = XLSX.utils.book_new();
+
+  XLSX.utils.book_append_sheet(wb, ws, "勤務データ");
+
+  const fileName =
+    `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}_勤務表.xlsx`;
+
+  XLSX.writeFile(wb, fileName);
+}
